@@ -1,0 +1,15 @@
+P = [0 0; 0 1; 1 0; 1 1]'; 
+X = [0 1 1 1];            
+redp = newp([-0.1 1.1; -0.1 1.1], 1);
+view(redp);
+pesos = redp.IW{1,1}; 
+bias = redp.b{1};    
+y = sim(redp, P);
+redp.trainParam.epochs = 500; 
+redp.trainParam.goal = 0.001; 
+redp = train(redp, P, X);
+pesos = redp.IW{1,1}; 
+bias = redp.b{1};    
+y = sim(redp, P);
+disp('Resultado final de la red:');
+disp(y);
